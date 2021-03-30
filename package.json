@@ -4,7 +4,8 @@
   "description": "A web app for building transit maps",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,19 @@
   "bugs": {
     "url": "https://github.com/abachant/metro-mapper/issues"
   },
-  "homepage": "https://github.com/abachant/metro-mapper#readme"
+  "homepage": "https://github.com/abachant/metro-mapper#readme",
+  "dependencies": {
+    "babel-loader": "^8.2.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "webpack-dev-server": "^3.11.2"
+  }
 }
