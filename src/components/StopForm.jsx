@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 
-const StopForm = () => {
-  const [stopName, setStopName] = useState();
+const StopForm = ({ addStop }) => {
+  const [stopName, setStopName] = useState('');
+
+  // Add new stop to route and clear form
+  const submitNewStop = (e) => {
+    e.preventDefault();
+    // Verify new stop is valid string
+    if (stopName !== '') {
+      addStop(stopName);
+      // Clear form for next submission
+      setStopName('');
+    }
+  };
 
   return (
     <div className="stop-form">
@@ -9,9 +20,9 @@ const StopForm = () => {
       <form>
         <label htmlFor="stop-name">
           Stop Name:
-          <input type="text" name="stop-name" value={stopName} onChange={(e) => setStopName(e.value)} />
+          <input type="text" name="stop-name" value={stopName} onChange={(e) => setStopName(e.target.value)} />
         </label>
-        <input type="button" value="Add Stop" onClick={() => console.log(stopName)} />
+        <input type="submit" value="Add Stop" onClick={submitNewStop} />
       </form>
     </div>
   );

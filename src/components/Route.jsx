@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Stop from './Stop.jsx';
 import StopForm from './StopForm.jsx';
 
 const Route = () => {
-  console.log('test');
+  const [stops, setStops] = useState(['Fanieul Square', 'Haymarket Square']);
+
+  // add new stop to end of the line
+  const addStop = (newStop) => {
+    setStops([...stops, newStop]);
+  };
+
   return (
     <div>
       <div>New Route</div>
       <ul className="route-list">
-        <Stop stopName="Haymarket" />
-        <Stop stopName="Fanieul Square" />
+        {stops.map((stop) => <Stop stopName={stop} />)}
       </ul>
-      <StopForm />
+      <StopForm addStop={addStop} />
     </div>
   );
 };
