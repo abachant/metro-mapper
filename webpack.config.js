@@ -4,11 +4,11 @@ module.exports = {
   mode: 'development',
   entry: path.resolve(__dirname, 'src', 'index.jsx'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public/dist'),
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'public/dist'),
     open: true,
     clientLogLevel: 'silent',
     port: 9000,

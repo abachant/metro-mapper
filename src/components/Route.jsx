@@ -14,7 +14,7 @@ const Route = () => {
     <div>
       <div>New Route</div>
       <ul className="route-list">
-        {stops.map((stop) => <Stop stopName={stop} />)}
+        {stops.map((stop) => <Stop key={stop} stopName={stop} />)}
       </ul>
       <StopForm addStop={addStop} />
     </div>
