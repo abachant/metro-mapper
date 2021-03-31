@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import L from 'leaflet';
+import StopForm from './StopForm.jsx';
 import { accessKey } from '../../accessToken.json';
 
 const Map = () => {
   useEffect(() => {
-    const mymap = L.map('map').setView([51.505, -0.09], 13);
+    const primaryMap = L.map('map').setView([51.505, -0.09], 13);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
@@ -12,7 +14,19 @@ const Map = () => {
       tileSize: 512,
       zoomOffset: -1,
       accessToken: accessKey,
-    }).addTo(mymap);
+    }).addTo(primaryMap);
+
+    const popup = L.popup();
+
+    const onMapClick = (e) => {
+      popup
+        .setLatLng(e.latlng)
+        // "You clicked the map at " + e.latlng.toString()
+        .setContent(ReactDOMServer.renderToString(<StopForm />))
+        .openOn(primaryMap);
+    }
+
+    primaryMap.on('click', onMapClick);
   }, []);
 
   return (
