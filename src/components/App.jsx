@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import System from './System.jsx';
 import Map from './Map.jsx';
-import StopForm from './StopForm.jsx';
 
 const App = () => {
-  console.log('test');
+  const [stops, setStops] = useState(['Fanieul Square', 'Haymarket Square']);
+  // add new stop to end of the line
+  const addStop = (newStop) => {
+    setStops([...stops, newStop]);
+  };
+
   return (
     <div>
-      <StopForm />
       <h1>Metro Mapper</h1>
       <Map />
-      <System />
+      <System stops={stops} addStop={addStop} />
     </div>
   );
 };

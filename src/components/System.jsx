@@ -1,12 +1,12 @@
 import React from 'react';
 import Route from './Route.jsx';
 
-const System = () => {
+const System = ({ stops, addStop }) => {
   console.log('test');
   return (
     <div>
       <h3>New Route</h3>
-      <Route />
+      <Route stops={stops} addStop={addStop} />
     </div>
   );
 };

@@ -19,12 +19,17 @@ const Map = () => {
     const popup = L.popup();
 
     const onMapClick = (e) => {
+      // console.log(e.latlng)
       popup
         .setLatLng(e.latlng)
         // "You clicked the map at " + e.latlng.toString()
-        .setContent(ReactDOMServer.renderToString(<StopForm />))
+        // .setContent(ReactDOMServer.renderToString(<StopForm />))
+        .setContent('<div>you just clicked</div>')
         .openOn(primaryMap);
-    }
+
+      const marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(primaryMap);
+      marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
+    };
 
     primaryMap.on('click', onMapClick);
   }, []);
