@@ -1,13 +1,17 @@
 import React from 'react';
+import Stop from './Stop.jsx';
 
-const System = () => {
+const Route = () => {
   console.log('test');
   return (
     <div>
       <div>New Route</div>
-      <ol className="route-list" />
+      <ul className="route-list">
+        <Stop stopName="Haymarket" />
+        <Stop stopName="Fanieul Square" />
+      </ul>
     </div>
   );
 };
 
-export default System;
+export default Route;
