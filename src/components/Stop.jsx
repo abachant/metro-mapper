@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Stop = ({ stopName }) => {
-  console.log('test');
+const Stop = ({ stopInfo }) => {
   return (
     <div className="route-stop">
       <span className="stop-icon">
@@ -9,7 +8,7 @@ const Stop = ({ stopName }) => {
           <circle cx="10" cy="10" r="5" stroke="red" strokeWidth="5" fill="white" />
         </svg>
       </span>
-      <span>{stopName}</span>
+      <span>{stopInfo.name}</span>
     </div>
   );
 };

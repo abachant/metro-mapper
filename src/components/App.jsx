@@ -7,6 +7,8 @@ import StopForm from './StopForm.jsx';
 
 const App = () => {
   const [stops, setStops] = useState([]);
+  const [routes, setRoutes] = useState(['New Route #1']);
+  const [currentRoute, setCurrentRoute] = useState('New Route #1');
   const [newStop, setNewStop] = useState([]);
   // add new stop to end of the line
   const addStop = (stop) => {
@@ -50,7 +52,7 @@ const App = () => {
         {renderNewStop()}
         {renderStops()}
       </MapContainer>
-      {/* <System stops={stops} addStop={addStop} /> */}
+      <System stops={stops} routes={routes} currentRoute={currentRoute} setRoutes={setRoutes} setCurrentRoute={setCurrentRoute} />
     </div>
   );
 };
