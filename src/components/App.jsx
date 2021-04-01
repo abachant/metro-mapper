@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline} from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 
 import System from './System.jsx';
 import Map from './Map.jsx';
+import StopForm from './StopForm.jsx';
 
 const App = () => {
   const [stops, setStops] = useState([]);
-  // const [newStop, setNewStop] = useState();
+  const [newStop, setNewStop] = useState([]);
   // add new stop to end of the line
-  const addStop = (newStop) => {
-    setStops([...stops, newStop]);
+  const addStop = (stop) => {
+    setStops([...stops, stop]);
   };
 
-  // const renderMarkers
+  const renderMarker = () => {
+    if (newStop.length > 1) {
+      return (
+        <Marker position={newStop}>
+          <Popup>
+            <StopForm addStop={addStop} newStop={newStop} setNewStop={setNewStop}/>
+          </Popup>
+        </Marker>
+      );
+    }
+  };
+
+  // const
 
   return (
     <div>
@@ -22,15 +35,11 @@ const App = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Map addStop={addStop}/>
-        <Polyline pathOptions={{color: 'red'}} positions={stops} />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-        </Marker>
+        <Map setNewStop={setNewStop} />
+        <Polyline pathOptions={{ color: 'red' }} positions={stops.map(stop=>stop.latlng)} />
+        {renderMarker()}
       </MapContainer>
-      <System stops={stops} addStop={addStop} />
+      {/* <System stops={stops} addStop={addStop} /> */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const StopForm = ({ addStop }) => {
+const StopForm = ({ addStop, newStop, setNewStop}) => {
   const [stopName, setStopName] = useState('');
 
   // Add new stop to route and clear form
@@ -8,9 +8,11 @@ const StopForm = ({ addStop }) => {
     e.preventDefault();
     // Verify new stop is valid string
     if (stopName !== '') {
-      addStop(stopName);
+      const stopInfo = {name: stopName, latlng: newStop}
+      addStop(stopInfo);
       // Clear form for next submission
       setStopName('');
+      setNewStop([]);
     }
   };
 

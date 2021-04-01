@@ -5,12 +5,12 @@ import L from 'leaflet';
 import StopForm from './StopForm.jsx';
 // import { accessKey } from '../../accessToken.json';
 
-const Map = ({addStop}) => {
+const Map = ({setNewStop}) => {
   // const [newStop, setNewStop] = useState();
   const map = useMapEvents({
     click: (e) => {
       e.originalEvent.preventDefault();
-      addStop([e.latlng.lat, e.latlng.lng]);
+      setNewStop([e.latlng.lat, e.latlng.lng]);
     },
   });
   return null;
